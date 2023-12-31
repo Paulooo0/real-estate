@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-RealStateApplication<real-state>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.realstate.RealStateApplication",
+            "projectName": "real-state",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
