@@ -19,9 +19,11 @@ public class Property {
     @Id
     private ObjectId id;
 
-    private Long CEP;
+    private String propertyId;
+
+    private Long cep;
     
-    private Integer address_number;
+    private Integer addressNumber;
     
     private String category;
 
@@ -35,7 +37,7 @@ public class Property {
 
     private Integer bedrooms;
 
-    private Integer cars_quantity;
+    private Integer carsQuantity;
 
-    private Instant created_at;
+    private Instant createdAt;
 }     

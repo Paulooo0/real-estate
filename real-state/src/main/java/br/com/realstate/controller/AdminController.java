@@ -58,8 +58,8 @@ public class AdminController {
 
     @DeleteMapping("/delete/{email}")
     public ResponseEntity<String> deleteAdmin(@PathVariable String email) throws EmailNotFoundException {
-        String adminFirstName = adminService.findByEmail(email).getFirst_name();
-        String adminLastName = adminService.findByEmail(email).getLast_name();
+        String adminFirstName = adminService.findByEmail(email).getFirstName();
+        String adminLastName = adminService.findByEmail(email).getLastName();
 
         adminService.deleteAdmin(email);
         return ResponseEntity.status(HttpStatus.OK).body("Admin " + adminFirstName + " " + adminLastName + " was deleted");
