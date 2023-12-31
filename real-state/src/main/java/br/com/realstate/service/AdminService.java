@@ -20,7 +20,7 @@ public class AdminService {
 
     public void saveAdmin(Admin admin) {
         if (adminRepository.findByEmail(admin.getEmail()).isPresent()) {
-            throw new RuntimeException(admin.getFirst_name() + " " + admin.getLast_name() + " with email " + admin.getEmail() + " already exists");
+            throw new RuntimeException(admin.getFirstName() + " " + admin.getLastName() + " with email " + admin.getEmail() + " already exists");
         }
         adminRepository.save(admin);
     }
@@ -39,8 +39,8 @@ public class AdminService {
 
     public void updateAdmin(String email, Admin admin) throws EmailNotFoundException {
         Admin existentAdmin = findByEmail(email);
-        existentAdmin.setFirst_name(admin.getFirst_name());
-        existentAdmin.setLast_name(admin.getLast_name());
+        existentAdmin.setFirstName(admin.getFirstName());
+        existentAdmin.setLastName(admin.getLastName());
         existentAdmin.setPhone(admin.getPhone());
         adminRepository.save(existentAdmin);
     }

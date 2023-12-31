@@ -16,9 +16,9 @@ public class Admin {
     @Id
     private ObjectId id;
     
-    private String first_name;
+    private String firstName;
 
-    private String last_name;
+    private String lastName;
 
     private String email;
 

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,13 +11,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import br.com.realstate.errors.EmailNotFoundException;
 import br.com.realstate.errors.PhoneNotFoundException;
 import br.com.realstate.model.Admin;
 import br.com.realstate.service.AdminService;
 
-@Controller
+@RestController
 @RequestMapping("/admin")
 public class AdminController {
     private final AdminService adminService;
@@ -58,8 +58,8 @@ public class AdminController {
 
     @DeleteMapping("/delete/{email}")
     public ResponseEntity<String> deleteAdmin(@PathVariable String email) throws EmailNotFoundException {
-        String adminFirstName = adminService.findByEmail(email).getFirst_name();
-        String adminLastName = adminService.findByEmail(email).getLast_name();
+        String adminFirstName = adminService.findByEmail(email).getFirstName();
+        String adminLastName = adminService.findByEmail(email).getLastName();
 
         adminService.deleteAdmin(email);
         return ResponseEntity.status(HttpStatus.OK).body("Admin " + adminFirstName + " " + adminLastName + " was deleted");
