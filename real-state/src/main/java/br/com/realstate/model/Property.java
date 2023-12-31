@@ -1,6 +1,7 @@
 package br.com.realstate.model;
 
 import java.time.Instant;
+import java.util.List;
 
 import org.bson.types.Decimal128;
 import org.bson.types.ObjectId;
@@ -22,9 +23,11 @@ public class Property {
     private String propertyId;
 
     private Long cep;
-    
+
+    private String street;
+
     private Integer addressNumber;
-    
+
     private String category;
 
     private String description;
@@ -38,6 +41,12 @@ public class Property {
     private Integer bedrooms;
 
     private Integer carsQuantity;
+    
+    private List<String> images;
 
     private Instant createdAt;
-}     
+
+    public String setPropertyId() {
+        return cep.toString() + addressNumber.toString();
+    }
+}
