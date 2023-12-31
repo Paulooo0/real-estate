@@ -1,5 +1,7 @@
 package br.com.realstate.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import br.com.realstate.model.Property;
@@ -23,5 +25,29 @@ public class PropertyService {
 
     public Property findByPropertyId(String propertyId) {
         return propertyRepository.findByPropertyId(propertyId).orElseThrow(() -> new PropertyNotFoundException(propertyId));
+    }
+
+    public List<Property> findAllPropertiesByCategory(String category) {
+        return propertyRepository.findAllByCategory(category);
+    }
+
+    public List<Property> findAllPropertiesByCep(Integer CEP) {
+        return propertyRepository.findAllByCep(CEP);
+    }
+
+    public void updateProperty(String propertyId, Property property) {
+        Property existentProperty = findByPropertyId(propertyId);
+
+        existentProperty.setDescription(property.getDescription());
+        existentProperty.setCharacteristics(property.getCharacteristics());
+        existentProperty.setPrice(property.getPrice());
+        existentProperty.setImages(property.getImages());
+
+        propertyRepository.save(property);
+    }
+
+    public void deleteProperty(String propertyId) {
+        Property existentProperty = findByPropertyId(propertyId);
+        propertyRepository.delete(existentProperty);
     }
 }

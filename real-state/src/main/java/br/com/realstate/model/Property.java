@@ -32,6 +32,8 @@ public class Property {
 
     private String description;
 
+    private List<String> characteristics;
+
     private Decimal128 price;
 
     private Integer area;
