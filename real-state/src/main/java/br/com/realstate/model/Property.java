@@ -46,7 +46,7 @@ public class Property {
     
     private List<String> images;
 
-    private Instant createdAt;
+    private Instant createdAt = Instant.now();
 
     public String setPropertyId() {
         return cep.toString() + addressNumber.toString();

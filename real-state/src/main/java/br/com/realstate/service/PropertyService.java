@@ -20,11 +20,16 @@ public class PropertyService {
         if (propertyRepository.findByPropertyId(property.getPropertyId()).isPresent()) {
             throw new RuntimeException(property.getPropertyId() + " already exists");
         }
+        property.setPropertyId(property.getCep().toString() + property.getAddressNumber().toString());
         propertyRepository.save(property);
     }
 
     public Property findByPropertyId(String propertyId) {
         return propertyRepository.findByPropertyId(propertyId).orElseThrow(() -> new PropertyNotFoundException(propertyId));
+    }
+
+    public List<Property> findAll() {
+        return propertyRepository.findAll();
     }
 
     public List<Property> findAllPropertiesByCategory(String category) {
@@ -43,7 +48,7 @@ public class PropertyService {
         existentProperty.setPrice(property.getPrice());
         existentProperty.setImages(property.getImages());
 
-        propertyRepository.save(property);
+        propertyRepository.save(existentProperty);
     }
 
     public void deleteProperty(String propertyId) {
