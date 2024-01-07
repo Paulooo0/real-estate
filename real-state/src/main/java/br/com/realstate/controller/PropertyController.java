@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.realstate.errors.PropertyAlreadyExistsException;
 import br.com.realstate.model.Property;
 import br.com.realstate.service.PropertyService;
 
@@ -27,7 +28,7 @@ public class PropertyController {
     }
 
     @PostMapping
-    public ResponseEntity<Property> saveProperty(@RequestBody Property property) {
+    public ResponseEntity<Property> saveProperty(@RequestBody Property property) throws PropertyAlreadyExistsException {
         propertyService.saveProperty(property);
         return ResponseEntity.status(HttpStatus.CREATED).body(property);
     }
@@ -43,7 +44,7 @@ public class PropertyController {
     }
 
     @GetMapping("/cep/{cep}")
-    public ResponseEntity<List<Property>> getAllPropertiesByCep(@PathVariable Integer cep) {
+    public ResponseEntity<List<Property>> getAllPropertiesByCep(@PathVariable Long cep) {
         return ResponseEntity.status(HttpStatus.OK).body(propertyService.findAllPropertiesByCep(cep));
     }
 

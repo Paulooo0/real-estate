@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import br.com.realstate.errors.PropertyAlreadyExistsException;
 import br.com.realstate.model.Property;
 import br.com.realstate.repository.PropertyRepository;
 import jakarta.el.PropertyNotFoundException;
@@ -16,11 +17,14 @@ public class PropertyService {
         this.propertyRepository = propertyRepository;
     }
 
-    public void saveProperty(Property property) {
-        if (propertyRepository.findByPropertyId(property.getPropertyId()).isPresent()) {
-            throw new RuntimeException(property.getPropertyId() + " already exists");
+    public void saveProperty(Property property) throws PropertyAlreadyExistsException {
+        List<Property> propertiesByCep = propertyRepository.findAllByCep(property.getCep());
+        for (Property p : propertiesByCep) {
+            if (p.getAddressNumber().equals(property.getAddressNumber())) {
+                throw new PropertyAlreadyExistsException(property.getStreet(), property.getAddressNumber());
+            }
         }
-        property.setPropertyId(property.getCep().toString() + property.getAddressNumber().toString());
+
         propertyRepository.save(property);
     }
 
@@ -36,7 +40,7 @@ public class PropertyService {
         return propertyRepository.findAllByCategory(category);
     }
 
-    public List<Property> findAllPropertiesByCep(Integer CEP) {
+    public List<Property> findAllPropertiesByCep(Long CEP) {
         return propertyRepository.findAllByCep(CEP);
     }
 
