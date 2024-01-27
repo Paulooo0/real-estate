@@ -9,6 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import br.com.realestate.model.Property;
 
+// The code is defining a repository interface called `PropertyRepository` that extends the
+// `MongoRepository` interface.
+
 @Repository
 public interface PropertyRepository extends MongoRepository<Property, ObjectId> {
     

@@ -10,6 +10,11 @@ import br.com.realestate.errors.PropertyAlreadyExistsException;
 import br.com.realestate.model.Property;
 import br.com.realestate.repository.PropertyRepository;
 
+/**
+ * The PropertyService class is a service that provides methods for saving, finding, updating, and
+ * deleting properties.
+ */
+
 @Service
 public class PropertyService {
     private final PropertyRepository propertyRepository;

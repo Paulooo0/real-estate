@@ -5,9 +5,15 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.com.realestate.errors.EmailNotFoundException;
+import br.com.realestate.errors.InvalidValueException;
 import br.com.realestate.errors.PhoneNotFoundException;
 import br.com.realestate.model.Admin;
 import br.com.realestate.repository.AdminRepository;
+
+/**
+ * The AdminService class provides methods for managing Admin objects, such as saving, finding,
+ * updating, and deleting admins.
+ */
 
 @Service
 public class AdminService {
@@ -37,7 +43,7 @@ public class AdminService {
         return adminRepository.findByEmail(email).isPresent();
     }
 
-    public void updateAdmin(String email, Admin admin) throws EmailNotFoundException {
+    public void updateAdmin(String email, Admin admin) throws EmailNotFoundException, InvalidValueException {
         Admin existentAdmin = findByEmail(email);
         existentAdmin.setFirstName(admin.getFirstName());
         existentAdmin.setLastName(admin.getLastName());

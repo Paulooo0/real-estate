@@ -62,3 +62,15 @@ Content-Type: application/json
 DELETE http://localhost:8080/property/delete/6
 
 # Admin
+
+###
+POST http://localhost:8080/admin
+Content-Type: application/json
+
+{
+  "firstName": "hello",
+  "lastName": "world",
+  "email": "14some@email.com",
+  "password": "123456*a",
+  "phone": "11987654321"
+}

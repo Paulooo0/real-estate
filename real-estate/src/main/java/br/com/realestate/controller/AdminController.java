@@ -14,9 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.realestate.errors.EmailNotFoundException;
+import br.com.realestate.errors.InvalidValueException;
 import br.com.realestate.errors.PhoneNotFoundException;
 import br.com.realestate.model.Admin;
 import br.com.realestate.service.AdminService;
+
+/**
+ * The AdminController class is a REST controller that handles CRUD operations for the Admin entity.
+ */
 
 @RestController
 @RequestMapping("/admin")
@@ -51,7 +56,7 @@ public class AdminController {
     }
 
     @PutMapping("/update/{email}")
-    public ResponseEntity<Admin> updateAdmin(@PathVariable String email, @RequestBody Admin admin) throws EmailNotFoundException {
+    public ResponseEntity<Admin> updateAdmin(@PathVariable String email, @RequestBody Admin admin) throws EmailNotFoundException, InvalidValueException {
         adminService.updateAdmin(email, admin);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

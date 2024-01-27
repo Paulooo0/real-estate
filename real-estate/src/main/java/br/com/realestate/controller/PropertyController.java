@@ -20,6 +20,10 @@ import br.com.realestate.errors.PropertyNotFoundException;
 import br.com.realestate.model.Property;
 import br.com.realestate.service.PropertyService;
 
+/**
+ * The PropertyController class is a REST controller that handles CRUD operations for Property objects.
+ */
+
 @RestController
 @RequestMapping("/property")
 public class PropertyController {

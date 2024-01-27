@@ -12,6 +12,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The `Property` class represents a property with various attributes such as ID, address, category,
+ * description, price, area, bathrooms, bedrooms, and more.
+ */
+
 @Document(collection = "properties")
 @Data
 @AllArgsConstructor
