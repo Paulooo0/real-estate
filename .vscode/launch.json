@@ -2,11 +2,11 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-RealStateApplication<real-state>",
+            "name": "Spring Boot-RealEstateApplication<real-estate>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "br.com.realstate.RealStateApplication",
-            "projectName": "real-state",
+            "mainClass": "br.com.realestate.RealEstateApplication",
+            "projectName": "real-estate",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
