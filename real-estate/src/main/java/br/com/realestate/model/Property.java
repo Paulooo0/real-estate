@@ -3,11 +3,11 @@ package br.com.realestate.model;
 import java.time.Instant;
 import java.util.List;
 
-import org.bson.types.Decimal128;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import br.com.realestate.errors.InvalidValueException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,7 +22,7 @@ public class Property {
 
     private Long propertyId;
 
-    private Long cep;
+    private String cep;
 
     private String street;
 
@@ -34,7 +34,7 @@ public class Property {
 
     private List<String> characteristics;
 
-    private Decimal128 price;
+    private Double price;
 
     private Integer area;
 
@@ -47,4 +47,48 @@ public class Property {
     private List<String> images;
 
     private Instant createdAt = Instant.now();
+
+    public void setCep(String cep) throws InvalidValueException {
+        if (cep != null && cep.length() == 8) {
+            this.cep = cep;
+        } else {
+            throw new InvalidValueException("Cep", cep);
+        }
+    }
+
+    public void setAddressNumber(Integer addressNumber) throws InvalidValueException {
+        if (addressNumber != null && addressNumber > 0) {
+            this.addressNumber = addressNumber;
+        }
+        else if (addressNumber == null) {
+            throw new NullPointerException();
+        }
+        else {
+            throw new InvalidValueException("Address number", addressNumber);
+        }
+    }
+
+    public void setPrice(Double price) throws InvalidValueException {
+        if (price != null && price > 0d) {
+            this.price = price;
+        } else {
+            throw new InvalidValueException("Price", price);
+        }
+    }
+
+    public void setArea(Integer area) throws InvalidValueException {
+        if (area != null && area > 0) {
+            this.area = area;
+        } else {
+            throw new InvalidValueException("Area", area);
+        }
+    }
+
+    public void setBathrooms(Integer bathrooms) throws InvalidValueException {
+        if (bathrooms != null) {
+            this.bathrooms = bathrooms;
+        } else {
+            throw new InvalidValueException("Bathrooms", bathrooms);
+        }
+    }
 }

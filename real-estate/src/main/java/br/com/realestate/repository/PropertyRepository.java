@@ -16,5 +16,5 @@ public interface PropertyRepository extends MongoRepository<Property, ObjectId> 
 
     List<Property> findAllByCategory(String category);
 
-    List<Property> findAllByCep(Long CEP);
+    List<Property> findAllByCep(String CEP);
 }

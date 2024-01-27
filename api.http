@@ -1,0 +1,64 @@
+# Properties
+
+###
+POST http://localhost:8080/property
+Content-Type: application/json
+
+{
+  "cep": 0,
+  "street": "some street",
+  "addressNumber": 0,
+  "category": "category",
+  "description": "some description",
+  "characteristics": [
+    "some characteristic"
+  ],
+  "price": 0,
+  "area": 0,
+  "bathrooms": 0,
+  "bedrooms": 0,
+  "carsQuantity": 0,
+  "images": [
+    "https://via.placeholder.com/150"
+  ]
+}
+
+###
+GET http://localhost:8080/property/all
+
+###
+GET http://localhost:8080/property/id/6
+
+###
+GET http://localhost:8080/property/category/category
+
+###
+GET http://localhost:8080/property/cep/0
+
+###
+PUT http://localhost:8080/property/update/6
+Content-Type: application/json
+
+{
+  "cep": "12345678",
+  "street": "some street",
+  "addressNumber": 1,
+  "category": "category",
+  "description": "some description",
+  "characteristics": [
+    "some characteristic"
+  ],
+  "price": 0.1,
+  "area": 1,
+  "bathrooms": 0,
+  "bedrooms": 0,
+  "carsQuantity": 0,
+  "images": [
+    "https://via.placeholder.com/150"
+  ]
+}
+
+###
+DELETE http://localhost:8080/property/delete/6
+
+# Admin

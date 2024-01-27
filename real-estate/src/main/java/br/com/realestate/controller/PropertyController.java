@@ -1,4 +1,5 @@
 package br.com.realestate.controller;
+package br.com.realestate.controller;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.realestate.errors.InvalidValueException;
 import br.com.realestate.errors.PropertyAlreadyExistsException;
 import br.com.realestate.errors.PropertyNotFoundException;
 import br.com.realestate.model.Property;
@@ -34,6 +36,11 @@ public class PropertyController {
         return ResponseEntity.status(HttpStatus.CREATED).body(property);
     }
 
+    @GetMapping("/id/{propertyId}")
+    public ResponseEntity<Property> getProperty(@PathVariable Long propertyId) throws PropertyNotFoundException {
+        return ResponseEntity.status(HttpStatus.OK).body(propertyService.findByPropertyId(propertyId));
+    }
+
     @GetMapping("/all")
     public ResponseEntity<List<Property>> getAllProperties() {
         return ResponseEntity.status(HttpStatus.OK).body(propertyService.findAll());
@@ -45,17 +52,18 @@ public class PropertyController {
     }
 
     @GetMapping("/cep/{cep}")
-    public ResponseEntity<List<Property>> getAllPropertiesByCep(@PathVariable Long cep) {
+    public ResponseEntity<List<Property>> getAllPropertiesByCep(@PathVariable String cep) {
         return ResponseEntity.status(HttpStatus.OK).body(propertyService.findAllPropertiesByCep(cep));
     }
 
     @PutMapping("/update/{propertyId}")
-    public ResponseEntity<String> updateProperty(@PathVariable Long propertyId, @RequestBody Property property) throws PropertyNotFoundException {
+    public ResponseEntity<String> updateProperty(@PathVariable Long propertyId, @RequestBody Property property) throws PropertyNotFoundException, InvalidValueException {
         propertyService.updateProperty(propertyId, property);
         return ResponseEntity.status(HttpStatus.OK).body("Property with id " + propertyId + " was updated");
     }
 
     @DeleteMapping("/delete/{propertyId}")
+    public ResponseEntity<String> deleteProperty(@PathVariable Long propertyId) throws PropertyNotFoundException {
     public ResponseEntity<String> deleteProperty(@PathVariable Long propertyId) throws PropertyNotFoundException {
         propertyService.deleteProperty(propertyId);
         return ResponseEntity.status(HttpStatus.OK).body("Property with id " + propertyId + " was deleted");

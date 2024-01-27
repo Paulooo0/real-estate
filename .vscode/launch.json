@@ -9,6 +9,16 @@
             "projectName": "real-estate",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-RealEstateApplication<real-estate>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "br.com.realestate.RealEstateApplication",
+            "projectName": "real-estate",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
