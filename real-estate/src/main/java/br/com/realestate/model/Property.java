@@ -64,11 +64,7 @@ public class Property {
     public void setAddressNumber(Integer addressNumber) throws InvalidValueException {
         if (addressNumber != null && addressNumber > 0) {
             this.addressNumber = addressNumber;
-        }
-        else if (addressNumber == null) {
-            throw new NullPointerException();
-        }
-        else {
+        } else {
             throw new InvalidValueException("Address number", addressNumber);
         }
     }

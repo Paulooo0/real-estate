@@ -1,5 +1,4 @@
 package br.com.realestate.controller;
-package br.com.realestate.controller;
 
 import java.util.List;
 
@@ -67,7 +66,6 @@ public class PropertyController {
     }
 
     @DeleteMapping("/delete/{propertyId}")
-    public ResponseEntity<String> deleteProperty(@PathVariable Long propertyId) throws PropertyNotFoundException {
     public ResponseEntity<String> deleteProperty(@PathVariable Long propertyId) throws PropertyNotFoundException {
         propertyService.deleteProperty(propertyId);
         return ResponseEntity.status(HttpStatus.OK).body("Property with id " + propertyId + " was deleted");

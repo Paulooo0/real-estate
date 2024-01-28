@@ -1,5 +1,4 @@
 package br.com.realestate.service;
-package br.com.realestate.service;
 
 import java.util.List;
 
@@ -7,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.realestate.errors.InvalidValueException;
 import br.com.realestate.errors.PropertyAlreadyExistsException;
+import br.com.realestate.errors.PropertyNotFoundException;
 import br.com.realestate.model.Property;
 import br.com.realestate.repository.PropertyRepository;
 
@@ -34,8 +34,8 @@ public class PropertyService {
         propertyRepository.save(property);
     }
 
-    public Property findByPropertyId(Long propertyId) throws br.com.realestate.errors.PropertyNotFoundException {
-        return propertyRepository.findByPropertyId(propertyId).orElseThrow(() -> new br.com.realestate.errors.PropertyNotFoundException(propertyId));
+    public Property findByPropertyId(Long propertyId) throws PropertyNotFoundException {
+        return propertyRepository.findByPropertyId(propertyId).orElseThrow(() -> new PropertyNotFoundException(propertyId));
     }
 
     public List<Property> findAll() {
@@ -50,7 +50,7 @@ public class PropertyService {
         return propertyRepository.findAllByCep(CEP);
     }
 
-    public void updateProperty(Long propertyId, Property property) throws br.com.realestate.errors.PropertyNotFoundException, InvalidValueException {
+    public void updateProperty(Long propertyId, Property property) throws PropertyNotFoundException, InvalidValueException {
         Property existentProperty = findByPropertyId(propertyId);
 
         existentProperty.setCep(property.getCep());
@@ -69,7 +69,7 @@ public class PropertyService {
         propertyRepository.save(existentProperty);
     }
 
-    public void deleteProperty(Long propertyId) throws br.com.realestate.errors.PropertyNotFoundException {
+    public void deleteProperty(Long propertyId) throws PropertyNotFoundException {
         Property existentProperty = findByPropertyId(propertyId);
         propertyRepository.delete(existentProperty);
     }

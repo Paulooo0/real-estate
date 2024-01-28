@@ -63,7 +63,6 @@ public class Admin {
     public void setPassword(String password) throws WeakPasswordException {
         if (password == null
         || password.length() < 8
-        // check if have at least one number, one letter and one special character, without use spaces and without use regex
         || !containsNumber(password)
         || !containsLetter(password)
         || !containsSpecialCharacter(password)
