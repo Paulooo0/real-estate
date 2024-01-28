@@ -5,7 +5,7 @@ services:
     image: mongo:${MONGO_LOCAL_VERSION}
     restart: always
     volumes:
-      - ./data/mongodb:/docker-entrypoint-initdb.d
+      - ./data/mongodb:/data/db
     ports:
       - 27017:27017
     environment:
