@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.realestate.errors.EmailNotFoundException;
+import br.com.realestate.errors.EntityAttributeValueAlreadyExists;
 import br.com.realestate.errors.InvalidValueException;
 import br.com.realestate.errors.PhoneNotFoundException;
 import br.com.realestate.model.Admin;
@@ -33,7 +34,7 @@ public class AdminController {
     }
 
     @PostMapping
-    public ResponseEntity<Admin> saveAdmin(@RequestBody Admin admin) {
+    public ResponseEntity<Admin> saveAdmin(@RequestBody Admin admin) throws EntityAttributeValueAlreadyExists {
         adminService.saveAdmin(admin);
         return ResponseEntity.status(HttpStatus.CREATED).body(admin);
     }

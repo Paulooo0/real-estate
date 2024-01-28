@@ -1,0 +1,14 @@
+version: '3.1'
+
+services:
+  mongodb:
+    image: mongo:${MONGO_LOCAL_VERSION}
+    restart: always
+    volumes:
+      - ./data/mongodb:/docker-entrypoint-initdb.d
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_LOCAL_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_LOCAL_PASSWORD}
+    command: mongod --auth

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import br.com.realestate.errors.EmailNotFoundException;
+import br.com.realestate.errors.EntityAttributeValueAlreadyExists;
 import br.com.realestate.errors.InvalidValueException;
 import br.com.realestate.errors.PhoneNotFoundException;
 import br.com.realestate.model.Admin;
@@ -24,9 +25,12 @@ public class AdminService {
         this.adminRepository = adminRepository;
     }
 
-    public void saveAdmin(Admin admin) {
+    public void saveAdmin(Admin admin) throws EntityAttributeValueAlreadyExists {
         if (adminRepository.findByEmail(admin.getEmail()).isPresent()) {
-            throw new RuntimeException(admin.getFirstName() + " " + admin.getLastName() + " with email " + admin.getEmail() + " already exists");
+            throw new EntityAttributeValueAlreadyExists("Admin", "email", admin.getEmail());
+        }
+        if (adminRepository.findByPhone(admin.getPhone()).isPresent()) {
+            throw new EntityAttributeValueAlreadyExists("Admin", "phone", admin.getPhone());
         }
         adminRepository.save(admin);
     }

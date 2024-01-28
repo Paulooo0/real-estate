@@ -61,6 +61,8 @@ Content-Type: application/json
 ###
 DELETE http://localhost:8080/property/delete/6
 
+# __________________________________________________________________
+
 # Admin
 
 ###
@@ -70,7 +72,29 @@ Content-Type: application/json
 {
   "firstName": "hello",
   "lastName": "world",
-  "email": "14some@email.com",
+  "email": "3some@email.com",
   "password": "123456*a",
+  "phone": "11987654323"
+}
+
+###
+GET http://localhost:8080/admin/all
+
+###
+GET http://localhost:8080/admin/email/13some@email.com
+
+###
+GET http://localhost:8080/admin/phone/11987654321
+
+###
+PUT http://localhost:8080/admin/update/13some@email.com
+Content-Type: application/json
+
+{
+  "firstName": "hello2",
+  "lastName": "world",
   "phone": "11987654321"
 }
+
+###
+DELETE http://localhost:8080/admin/delete/13some@email.com
