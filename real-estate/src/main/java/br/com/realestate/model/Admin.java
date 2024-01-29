@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import br.com.realestate.errors.InvalidValueException;
 import br.com.realestate.errors.WeakPasswordException;
+import br.com.realestate.utils.CheckContent;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -61,12 +62,14 @@ public class Admin {
     }
     
     public void setPassword(String password) throws WeakPasswordException {
+        CheckContent check = new CheckContent();
+
         if (password == null
         || password.length() < 8
-        || !containsNumber(password)
-        || !containsLetter(password)
-        || !containsSpecialCharacter(password)
-        || containsSpaces(password)) {
+        || !check.containsNumber(password)
+        || !check.containsLetter(password)
+        || !check.containsSpecialCharacter(password)
+        || check.containsSpaces(password)) {
             throw new WeakPasswordException();
         }
         this.password = password;
@@ -78,37 +81,5 @@ public class Admin {
             throw new InvalidValueException("phone", phone);
         }
         this.phone = phone;
-    }
-
-    private boolean containsNumber(String password) {
-        for (char c : password.toCharArray()) {
-    if (Character.isDigit(c)) {
-        return true;
-    }
-        }
-        return false;
-    }
-
-    private boolean containsLetter(String password) {
-        for (char c : password.toCharArray()) {
-    if (Character.isLetter(c)) {
-        return true;
-    }
-        }
-        return false;
-    }
-
-    private boolean containsSpecialCharacter(String password) {
-        String specialCharacters = "!@#$%^&*()-_=+\\|[{]};:'\",<.>/?";
-        for (char c : password.toCharArray()) {
-    if (specialCharacters.contains(String.valueOf(c))) {
-        return true;
-    }
-        }
-        return false;
-    }
-
-    private boolean containsSpaces(String password) {
-        return password.contains(" ");
     }
 }

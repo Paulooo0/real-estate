@@ -72,9 +72,9 @@ Content-Type: application/json
 {
   "firstName": "hello",
   "lastName": "world",
-  "email": "1some@email.com",
+  "email": "3some@email.com",
   "password": "123456*a",
-  "phone": "11987654321"
+  "phone": "11987654323"
 }
 
 ###
